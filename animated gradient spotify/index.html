@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Animated Gradient</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="my-canvas-id"></canvas>
+    <div class="glass"></div>
+    <script type="module" src="stripe-gradient.js"></script>
+    <script type="module">
+        import * as g from './stripe-gradient.js'
+        new Gradient({
+            canvas: '#my-canvas-id',
+            colors: ['#249e90', '#6fccc1', '#edefda', '#d3e3a0']
+        });
+        console.log("here")
+    </script>
+</body>
+</html>
