@@ -3,7 +3,7 @@ import './App.css'
 import { Squircle }
   from "@squircle-js/react"
 import * as g from './stripe-gradient.js'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { extractColors } from 'extract-colors'
 
 
@@ -21,25 +21,33 @@ function App() {
     });
   };
   
-  extractColors(coverImage)
-  .then(finalColor => {
-    console.log(finalColor)
-    updateItem(0, finalColor[0].hex)
-    updateItem(1, finalColor[1].hex)
-    updateItem(2, finalColor[2].hex)
-    updateItem(3, finalColor[3].hex)
-  })
-  .catch(console.error)
+ 
+  useEffect(() => {
+    extractColors(coverImage)
+    .then(finalColor => {
+      updateItem(0, finalColor[0].hex)
+      updateItem(1, finalColor[1].hex)
+      updateItem(2, finalColor[2].hex)
+      updateItem(3, finalColor[3].hex)
 
-  if(canvasRef.current != null) {
+      new Gradient({
+        canvas: canvasRef.current,
+        // colors: ['#249e90', '#6fccc1', '#edefda', '#d3e3a0']
+        colors: [fourColor[0], fourColor[1], fourColor[2], fourColor[3]]
+      });
+    })
+    .catch(console.error)
+  
     
-    new Gradient({
-      canvas: canvasRef.current,
-      colors: [fourColor[0], fourColor[1], fourColor[2], fourColor[3]]
-    });
-  } else {
-    console.log("no canvas")
-  }
+
+    // Return a cleanup function to clean up resources when the component unmounts
+    return () => {
+      // Clean up the gradient animator
+      console.log("clean up")
+    };
+  }, []); // Empty dependency array ensures that this effect runs only once on component mount
+
+
   
   return (
     <>
