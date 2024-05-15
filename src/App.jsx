@@ -23,14 +23,16 @@ function App() {
   
   extractColors(coverImage)
   .then(finalColor => {
+    console.log(finalColor)
     updateItem(0, finalColor[0].hex)
-    updateItem(1, finalColor[2].hex)
-    updateItem(2, finalColor[4].hex)
-    updateItem(3, finalColor[6].hex)
+    updateItem(1, finalColor[1].hex)
+    updateItem(2, finalColor[2].hex)
+    updateItem(3, finalColor[3].hex)
   })
   .catch(console.error)
 
   if(canvasRef.current != null) {
+    
     new Gradient({
       canvas: canvasRef.current,
       colors: [fourColor[0], fourColor[1], fourColor[2], fourColor[3]]
