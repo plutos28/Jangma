@@ -25,10 +25,10 @@ function App() {
   useEffect(() => {
     extractColors(coverImage)
     .then(finalColor => {
-      updateItem(0, finalColor[0].hex)
-      updateItem(1, finalColor[1].hex)
-      updateItem(2, finalColor[2].hex)
-      updateItem(3, finalColor[3].hex)
+      updateItem(0, finalColor[3].hex)
+      updateItem(1, finalColor[2].hex)
+      updateItem(2, finalColor[1].hex)
+      updateItem(3, finalColor[0].hex)
 
       new Gradient({
         canvas: canvasRef.current,
@@ -61,16 +61,10 @@ function App() {
           cornerSmoothing={1}
           width={450}
           height={450}
-          className=" mt-40 mx-auto bg-black text-white"
+          className="mt-40 mx-auto bg-black text-white"
         >
-        <img  src={coverImage} alt="Astro World Album Cover" />
+        <img src={coverImage} alt="Astro World Album Cover" />
         </Squircle>
-        {/* progress */}
-        {/* <div className='mt-2'>
-          <p>1:54</p>
-          <div className='mx-auto bg-black w-[400px] h-2'></div>
-          <p>3:23</p>
-        </div> */}
         </div>
       <div className='blur-3xl w-screen h-screen'></div>
       </div>
